@@ -4,18 +4,21 @@
 CREATE TABLE sites (
 	id			serial,
 	url			varchar(255),
+	url_pattern	varchar(255), //regex pattern to reconstruct URL based on tid
 	UNIQUE (url), 
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE links (
-	id 			serial,
 	site_id	 	integer REFERENCES sites(id),
-	name		varchar(255),
-	link   		varchar(255),
+	tid			integer,
+	parent_tid  integer,
+	title		varchar(255),
+	size		integer
+	children_size integer,
+	content		text,
 
-	UNIQUE(link),
-	PRIMARY KEY (id)
+	PRIMARY KEY (tid)
 );
 
 
